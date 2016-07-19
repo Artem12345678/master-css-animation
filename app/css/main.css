@@ -5,3 +5,59 @@ body{
   padding: 0;
   font: 1em sans-serif;
 }
+
+.earth {
+	width: 300px;
+	padding: 100px;
+	outline: 1px solid #ccc;
+	position:relative;
+	z-index:1;
+}
+
+.moon {
+	top: 170px;
+	left: 170px;
+	position: absolute;
+	animation: 5s orbita infinite linear;
+	z-index: 0;
+}
+
+@keyframes orbita {
+	0% {
+		width:72px;
+	}
+
+	24% {				/*Свойство z-index набирает значение
+						от нуля до двух с 0 до 25, а нам нужно, 
+						чтобы это происходило резко, поэтому 
+						читерим и задаем z-index:0 для 24%*/
+		z-index:0;
+	}
+
+	25% {
+		left:400px;
+		top:130px;
+		z-index:2;
+	}
+
+	50% {
+		width: 128px;	 /*Увеличиваем луну (приближение)*/
+	}
+	
+	74% {
+		z-index:2;		/*Свойство z-index набирает значение
+						от двух до нуля с 50 до 75, а нам нужно, 
+						чтобы это происходило резко, поэтому 
+						читерим и задаем z-index:2 для 74%*/
+	}
+
+	75% {
+		top:300px;
+		left:0;
+		z-index:0;		/*А теперь скрываем луну*/
+	}
+
+	100% {
+		width:72px;     /*Уменьшаем луну (отдаление)*/
+	}
+}
